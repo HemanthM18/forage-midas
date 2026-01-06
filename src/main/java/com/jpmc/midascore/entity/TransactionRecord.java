@@ -1,0 +1,43 @@
+package com.jpmc.midascore.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class TransactionRecord {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private double amount;
+
+    @ManyToOne
+    private UserRecord sender;
+
+    @ManyToOne
+    private UserRecord recipient;
+
+    public TransactionRecord() {}
+
+    public TransactionRecord(double amount, UserRecord sender, UserRecord recipient) {
+        this.amount = amount;
+        this.sender = sender;
+        this.recipient = recipient;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public UserRecord getSender() {
+        return sender;
+    }
+
+    public UserRecord getRecipient() {
+        return recipient;
+    }
+}
